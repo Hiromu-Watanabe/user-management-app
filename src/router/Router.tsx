@@ -7,9 +7,7 @@ import { Login } from "../components/pages/Login";
 export const Router: FC = memo(() => {
   return (
     <Routes>
-      <Route path="/">
-        <Login />
-      </Route>
+      <Route path="/" element={<Login />}></Route>
     </Routes>
   );
 });
