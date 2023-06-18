@@ -1,4 +1,6 @@
 import { memo, FC, ReactNode } from "react";
+import PropTypes from "prop-types";
+
 import { Header } from "../organisms/layout/Header";
 
 type Props = {
@@ -15,3 +17,7 @@ export const HeaderLayout: FC<Props> = memo((props) => {
     </>
   );
 });
+
+HeaderLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};

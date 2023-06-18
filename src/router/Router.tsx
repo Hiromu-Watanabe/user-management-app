@@ -2,12 +2,12 @@ import { memo, FC } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { homeRoutes } from "../router/HomeRoutes";
+import { HeaderLayout } from "../components/templates/HeaderLayout";
+import { Page404 } from "../components/pages/Page404";
 import { Login } from "../components/pages/Login";
 // import { Home } from "../components/pages/Home";
 // import { UserManagement } from "../components/pages/UserManagement";
 // import { Setting } from "../components/pages/Setting";
-import { Page404 } from "../components/pages/Page404";
-import { HeaderLayout } from "../components/templates/HeaderLayout";
 
 export const Router: FC = memo(() => {
   return (
@@ -18,9 +18,7 @@ export const Router: FC = memo(() => {
         element={
           <Routes>
             {homeRoutes.map((route) => (
-              <Route key={route.path} path={route.path} element={route.element}>
-                <HeaderLayout>{route.element}</HeaderLayout>
-              </Route>
+              <Route key={route.path} path={route.path} element={<HeaderLayout>{route.element}</HeaderLayout>}></Route>
             ))}
             {/* 下記コードは上記コードと同じことをやっている  */}
             {/* <Route index element={<Home />} />
