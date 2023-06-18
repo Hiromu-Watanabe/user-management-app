@@ -3,11 +3,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { user } from "../types/api/user";
+import { useMessage } from "./useMessage";
 
 export const useAuth = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+
+  // トーストのカスタムhook
+  const { showMessage } = useMessage();
 
   const login = useCallback(
     async (id: string) => {
@@ -15,19 +19,19 @@ export const useAuth = () => {
         setLoading(true);
 
         const res: user = (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)).data;
-        console.log(res);
         if (res) {
           navigate("/home");
+          showMessage({ title: "ログインしました", status: "success" });
         } else {
-          alert("ユーザーが見つかりません");
+          showMessage({ title: "ユーザーが見つかりません", status: "error" });
         }
       } catch (err) {
-        alert("ユーザーが見つかりません");
+        showMessage({ title: "ユーザーが見つかりません", status: "error" });
       } finally {
         setLoading(false);
       }
     },
-    [navigate]
+    [navigate, showMessage]
   );
   return { login, loading };
 };
