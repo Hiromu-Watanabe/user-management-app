@@ -1,6 +1,7 @@
 import { Home } from "../components/pages/Home";
 import { UserManagement } from "../components/pages/UserManagement";
 import { Setting } from "../components/pages/Setting";
+import { Page404 } from "../components/pages/Page404";
 
 export const homeRoutes = [
   {
@@ -14,5 +15,9 @@ export const homeRoutes = [
   {
     path: "/setting",
     element: <Setting />,
+  },
+  {
+    path: "*",
+    element: <Page404 />,
   },
 ];
