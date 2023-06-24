@@ -1,3 +1,4 @@
+
 import { Center, Spinner, Wrap, WrapItem, useDisclosure } from "@chakra-ui/react";
 import { memo, FC, useEffect, useCallback } from "react";
 import { UserCard } from "../organisms/user/UserCard";
@@ -6,6 +7,7 @@ import { UserDetailModal } from "../organisms/user/UserDetailModal";
 
 export const UserManagement: FC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const { getUsers, loading, users } = useAllUsers();
 
   useEffect(() => {
