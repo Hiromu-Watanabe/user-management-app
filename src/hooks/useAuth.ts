@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { user } from "../types/api/user";
+import { User } from "../types/api/user";
 import { useMessage } from "./useMessage";
 
 export const useAuth = () => {
@@ -18,7 +18,7 @@ export const useAuth = () => {
       try {
         setLoading(true);
 
-        const res: user = (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)).data;
+        const res: User = (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)).data;
         if (res) {
           navigate("/home");
           showMessage({ title: "ログインしました", status: "success" });
