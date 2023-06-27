@@ -5,12 +5,15 @@ import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
 import { useSelectUser } from "../../hooks/useSelectUser";
+// import { useLoginUser } from "../../hooks/useLoginUser";
 
 export const UserManagement: FC = memo(() => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure(); // Chakra UI搭載のモーダル開閉のカスタムフック
+  // const { loginUser } = useLoginUser(); // ログインユーザーcontextのcustom hooks
+  const { getUsers, loading, users } = useAllUsers(); // 全ユーザー情報取得のcustom hooks
+  const { onSelectUser, selectedUser } = useSelectUser(); // 選択したユーザー情報を特定しモーダルを表示するcustom hooks
 
-  const { getUsers, loading, users } = useAllUsers();
-  const { onSelectUser, selectedUser } = useSelectUser();
+  // console.log(loginUser);
 
   useEffect(() => {
     const fetchUsers = async () => await getUsers();

@@ -8,7 +8,7 @@ type Props = {
   onOpen: () => void;
 };
 
-// 選択したユーザー情報を特定しモーダルを表示するカスタムフック
+/** 選択したユーザー情報を特定しモーダルを表示するカスタムフック */
 export const useSelectUser = () => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
