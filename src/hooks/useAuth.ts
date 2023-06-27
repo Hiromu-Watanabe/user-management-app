@@ -4,14 +4,13 @@ import axios from "axios";
 
 import { User } from "../types/api/user";
 import { useMessage } from "./useMessage";
+import { useLoginUser } from "./useLoginUser";
 
 export const useAuth = () => {
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
-
-  // トーストのカスタムhook
-  const { showMessage } = useMessage();
+  const { showMessage } = useMessage(); // トーストのカスタムhooks
+  const { setLoginUser } = useLoginUser(); // ログインユーザーcontextのhooks
 
   const login = useCallback(
     async (id: string) => {
@@ -20,6 +19,8 @@ export const useAuth = () => {
 
         const res: User = (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)).data;
         if (res) {
+          const isAdmin = res.id === 10 ? true : false;
+          setLoginUser({ ...res, isAdmin });
           navigate("/home");
           showMessage({ title: "ログインしました", status: "success" });
         } else {
@@ -31,7 +32,7 @@ export const useAuth = () => {
         setLoading(false);
       }
     },
-    [navigate, showMessage]
+    [navigate, showMessage, setLoginUser]
   );
   return { login, loading };
 };
